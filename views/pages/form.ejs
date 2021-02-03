@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../layout/head.ejs') %> 
+  <title>Forms</title>
+</head>
+<body>
+  <header>
+    <%- include('../layout/header.ejs') %>
+  </header>
+  <main>
+  
+    <h1>Hello Forms</h1>
+  
+    <div>
+      <fieldset>
+        <form action="/saveFile" method="POST">
+        
+          <label for="fileSelect">Choose current file type</label>
+
+          <select name="fileLegacy" id="fileSelect">
+            <option value="" disabled selected hidden >Choose file</option>    
+            <option value="png">png</option>
+            <option value="jpg">jpg</option>
+          </select>
+
+          <br>
+
+          <label for="fileTarget">Select desired file type</label>
+
+          <select name="fileConversion" id="fileTarget">
+            <option value="" disabled selected hidden >Choose file</option>
+            <option value="png">png</option>
+            <option value="jpg">jpg</option>
+          </select>
+
+          <br>
+
+          <label for="fileUpload">Select the file for conversion:</label>
+
+            <input type="file"
+                  id="fileUpload" name="fileUpload"
+                  accept="image/png, image/jpg">
+
+          <br>
+
+          <input type="submit" value="Convert!">
+
+        </form>
+      </fieldset>
+    </div>
+
+  </main>
+  <footer>
+    <%- include('../layout/footer.ejs') %>
+  </footer>
+
+</body>
+</html>
