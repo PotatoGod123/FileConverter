@@ -61,7 +61,6 @@ function saveHandler(request, response) {
     let queryParams = {
       'File': base64String
     };
-
     // superagent.get(url)
     //   .set('Content-Type', `application/json`)
     //   .send(queryParams)
