@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <%- include('../layout/head.ejs') %> 
-  <title>Forms</title>
+  <%- include('../layout/head.ejs') %>
+    <title>Forms</title>
 </head>
+
 <body>
   <header>
     <%- include('../layout/header.ejs') %>
   </header>
   <main>
-  
+
     <h1>Hello Forms</h1>
-  
+
     <div>
       <fieldset>
-        <form action="/saveFile" method="POST">
-        
+        <form action="/saveFile" method="POST" enctype="multipart/form-data">
+
           <label for="fileSelect">Choose current file type</label>
 
-          <select name="fileLegacy" id="fileSelect">
-            <option value="" disabled selected hidden >Choose file</option>    
+          <select name="fileLegacy" id="fileSelect" required>
+            <option value="" disabled selected hidden>Choose file</option>
             <option value="png">png</option>
             <option value="jpg">jpg</option>
           </select>
@@ -28,8 +30,8 @@
 
           <label for="fileTarget">Select desired file type</label>
 
-          <select name="fileConversion" id="fileTarget">
-            <option value="" disabled selected hidden >Choose file</option>
+          <select name="fileConversion" id="fileTarget" required>
+            <option value="" disabled selected hidden>Choose file</option>
             <option value="png">png</option>
             <option value="jpg">jpg</option>
           </select>
@@ -38,9 +40,7 @@
 
           <label for="fileUpload">Select the file for conversion:</label>
 
-            <input type="file"
-                  id="fileUpload" name="fileUpload"
-                  accept="image/png, image/jpg">
+          <input type="file" id="fileUpload" name="fileUpload" accept="image/png, image/jpg" required>
 
           <br>
 
@@ -56,4 +56,5 @@
   </footer>
 
 </body>
+
 </html>
