@@ -6,9 +6,10 @@ const express = require('express');
 const pg = require('pg');
 const superagent = require('superagent');
 const cors = require('cors');
-const formidable = require('formidable');
-const convertapi = require('convertapi')(process.env.SECRET);
+const formidable = require('formidable');;
 const base64 = require('file-base64');
+const { ConvertAPI } = require('convertapi');
+const convertapi = new ConvertAPI(process.env.SECRET, { conversionTimeout: 60 });
 
 
 
@@ -49,18 +50,22 @@ function saveHandler(request, response) {
   let form = new formidable.IncomingForm();
 
   form.parse(request, (err, fields, files) => {
-    console.log(fields);
-    console.log(files);
-    console.log(files.fileUpload.name);
+    // console.log(fields);
+    // console.log(files);
+    // console.log(files.fileUpload.name);
 
     let holder = files.fileUpload.path;
+    let newPath= __dirname+holder;
+    console.log(newPath);
     // base64.encode(holder, (err, base64String) => {
 
     // });
 
-    let queryParams = {
-      'File': base64String
-    };
+    // convertapi.convert(fields.fileConversion,{File:holder})
+    //   .then(result=>{
+    //     console.log(result);
+    //   }).catch(err=>console.error(err));
+ 
     // superagent.get(url)
     //   .set('Content-Type', `application/json`)
     //   .send(queryParams)
