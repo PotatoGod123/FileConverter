@@ -3,9 +3,12 @@
 require('dotenv').config();
 
 const express = require('express');
-const pg =  require('pg');
+const pg = require('pg');
 const superagent = require('superagent');
 const cors = require('cors');
+const formidable = require('formidable');
+const convertapi = require('convertapi')(process.env.SECRET);
+const base64 = require('file-base64');
 
 
 
@@ -30,39 +33,52 @@ app.get('/form', formHandler);
 app.post('/savefile', saveHandler);
 
 //Handlers
-function homeHandler(request, response){
+function homeHandler(request, response) {
   response.status(200).render('pages/index');
 }
 
-function aboutUsHandler(request, response){
+function aboutUsHandler(request, response) {
   response.status(200).render('pages/aboutus');
 }
 
-function formHandler(request, response){
+function formHandler(request, response) {
   response.status(200).render('pages/form');
 }
 
-function saveHandler(request, response){
-  console.log(request.body);
+function saveHandler(request, response) {
+  let form = new formidable.IncomingForm();
 
-  let url = `https://v2.convertapi.com/convert/${request.body.fileLegacy}/to/${request.body.fileConversion}`;
+  form.parse(request, (err, fields, files) => {
+    console.log(fields);
+    console.log(files);
+    console.log(files.fileUpload.name);
 
-  console.log(url);
+    let holder = files.fileUpload.path;
+    // base64.encode(holder, (err, base64String) => {
 
-  let queryParams = {
-    Secret: process.env.SECRET,
-    File: request.body.fileUpload,
-  };
-  superagent.get(url)
-    .query(queryParams)
-    .attach('File', {uri: request.body.fileUpload, name: 'image', type: 'image/png'}, {contentType: 'png'})
-    .then(results =>{
-      console.log(results);
-      // console.log('-------');
-      // console.log(results.body);
-    }).catch(error => console.error(error));
-  response.status(200).render('pages/savefile');
+    // });
+
+    let queryParams = {
+      'File': base64String
+    };
+    // superagent.get(url)
+    //   .set('Content-Type', `application/json`)
+    //   .send(queryParams)
+    //   .then(results => {
+
+    //     console.log(results);
+    //     // console.log('-------');
+    //     // console.log(results.body);
+    //   }).catch(error => {
+    //     console.error(error);
+
+    //   });
+    response.status(200).render('pages/savefile');
+  });
+
 }
+
+
 
 app.listen(PORT, () => {
   console.log(`hi, you are on port ${PORT}`);
