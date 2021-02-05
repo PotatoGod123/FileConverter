@@ -2,16 +2,59 @@
 <html lang="en">
 <head>
   <%- include('../layout/head.ejs') %> 
-  <title>Potato</title>
+  <title>About Us</title>
 </head>
 <body>
   <header>
     <%- include('../layout/header.ejs') %>
   </header>
   <main>
+    <div class="about-section">
+      <h1>About Us Page</h1>
+      <p>Some text about who we are and what we do.</p>
+    </div>
     
-    <h1>Hello Us</h1>
+    <h2 style="text-align:center">Our Team</h2>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <img src="/img/codyprofilepicture.jpeg" alt="Cody" style="width: 500px;">
+          <div class="container">
+            <h2>Cody Carpenter</h2>
+            <p class="title">Developer</p>
+            <p>https://www.linkedin.com/in/callmecody/</p>
+            <p>https://github.com/CallMeCody</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          </div>
+        </div>
+      </div>
     
+      <div class="column">
+        <div class="card">
+          <img src="/img/20201021_142429.jpg" alt="Christian" style="width: 238px;">
+          <div class="container">
+            <h2>Christian Robles</h2>
+            <p class="title">Developer</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit</p>
+            <p>https://github.com/PotatoGod123</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card">
+          <img src="/img/IMG_3756.jpeg" alt="Matthew" style="width: 297px;">
+          <div class="container">
+            <h2>Maththew Santorsola</h2>
+            <p class="title">Developer</p>
+            <p>www.linkedin.com/in/matthew-santorsola</p>
+            <p>https://github.com/santorsm</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          </div>
+        </div>
+      </div>
+    </div> 
   </main>
   <footer>
     <%- include('../layout/footer.ejs') %>
