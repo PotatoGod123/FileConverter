@@ -18,12 +18,15 @@
       <fieldset>
         <form action="/saveFile" method="POST" enctype="multipart/form-data">
 
-          <label for="fileSelect">Choose current file type</label>
+          <label for="fileSelect">Chose current file type</label>
 
           <select name="fileLegacy" id="fileSelect" required>
             <option value="" disabled selected hidden>Choose file</option>
-            <option value="png">png</option>
-            <option value="jpg">jpg</option>
+            <% Files.forEach(val=>{ %>
+              <option  value="<%=val%>">
+                <%=val%>
+              </option>
+              <% }) %>
           </select>
 
           <br>
@@ -31,9 +34,13 @@
           <label for="fileTarget">Select desired file type</label>
 
           <select name="fileConversion" id="fileTarget" required>
-            <option value="" disabled selected hidden>Choose file</option>
-            <option value="png">png</option>
-            <option value="jpg">jpg</option>
+            <option value="" id="defaultSelect" disabled selected="selected" hidden >Choose file</option>
+            <% FilesTwo.forEach(val=>{ %>
+              <option class="hide" id="<%=val%>" value="<%=val%>">
+                <%=val%>
+              </option>
+              <% }) %>
+
           </select>
 
           <br>
@@ -56,5 +63,7 @@
   </footer>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./scripts/form.js"></script>
 
 </html>
