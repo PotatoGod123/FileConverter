@@ -34,10 +34,24 @@ body {
   padding: 5px;
 }
 
-p {
+.ourTeam {
+  font-weight: bolder;
+  font-size: xx-large;
+  padding: 20px;
+}
+
+.linkedIn {
   padding: 5px;
 }
 
-h2 {
+.gitHub {
   padding: 5px;
+}
+
+.bio {
+  padding: 5px;
+}
+
+.name {
+ font-weight: bold;
 }

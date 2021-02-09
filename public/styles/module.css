@@ -4,3 +4,8 @@
   background-color: #474e5d;
   color: white;
 }
+
+#resultsChart {
+  background-color: black;
+  position: relative; top: 483px;
+}
