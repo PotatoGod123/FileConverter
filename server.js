@@ -55,8 +55,6 @@ function formHandler(request, response) {
 
 function saveHandler(request, response) {
   let form = new formidable.IncomingForm();
-  let myUploadedFile = document.getElementById("fileUpload").files[0];
-  console.log(myUploadedFile);
 
   form.parse(request, (err, fields, files) => {
     console.log(fields);
