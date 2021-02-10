@@ -7,54 +7,161 @@
 </head>
 
 <body>
-  <header>
+  <div class="main-container full-height forms-page"> 
+  <header class="header">
     <%- include('../layout/header.ejs') %>
+    <div class="topbar">
+      <div class="topbar-container">
+        <nav class="topbar-nav">
+          <ul class="topbar-links">
+            <li class="nav-item">
+              <a href="/" target="_blank" rel="noopener">Home
+              </a>
+            </li>
+            <li>
+              <a href="/form" target="_blank" rel="noopener">Resize Video
+              </a> 
+            </li>
+            <li>
+              <a href="/aboutus" target="_blank" rel="noopener">Resize Video
+              </a> 
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="sticky-wrapper" style="min-height:70px;">
+      <div class="header-main sticky-header">
+        <div class="container">
+          <div class="header-wrapper">
+            <div class="logo">
+              <img src="https://www.onlyfoods.net/wp-content/uploads/2020/04/Russet-Potato.jpg" alt="Russet" width="100" height="70">
+              <a href=""></a>
+            </div>
+            <div class="mobile-tools">
+              <img src="https://cdn.pixabay.com/photo/2016/06/10/16/43/potatoes-1448420_960_720.jpg" alt="Russet" width="100" height="70">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </header>
   <main>
-
-    <h1>Hello Forms</h1>
-
-    <div>
-      <fieldset>
-        <form action="/saveFile" method="POST" enctype="multipart/form-data">
-
-          <label for="fileSelect">Chose current file type</label>
-
-          <select name="fileLegacy" id="fileSelect" required>
-            <option value="" disabled selected hidden>Choose file</option>
-            <% Files.forEach(val=>{ %>
-              <option  value="<%=val%>">
-                <%=val%>
-              </option>
-              <% }) %>
-          </select>
-
-          <br>
-
-          <label for="fileTarget">Select desired file type</label>
-
-          <select name="fileConversion" id="fileTarget" required>
-            <option value="" id="defaultSelect" disabled selected="selected" hidden >Choose file</option>
-            <% FilesTwo.forEach(val=>{ %>
-              <option class="hide" id="<%=val%>" value="<%=val%>">
-                <%=val%>
-              </option>
-              <% }) %>
-
-          </select>
-
-          <br>
-
-          <label for="fileUpload">Select the file for conversion:</label>
-
-          <input type="file" id="fileUpload" name="fileUpload" accept="image/png, image/jpg" required>
-
-          <br>
-
-          <input type="submit" value="Convert!">
-
-        </form>
-      </fieldset>
+    <div class="main-content">
+      <div class="container">
+        <div class="container-area">
+          <div class="page-title text-center">
+            <h1>Potato-god File Converter</h1>
+            <h2>Everything but fried</h2>
+          </div>
+          <div class="counter text-center">
+            <div class="counter-box text-center">
+              <span class="close"></span>
+              Potato-god loves potatoes. We've peeled 
+              <b>many many</b>
+               potatoes with a total size of 
+              <span class="text-nowrap">
+              <b>50,000</b>
+              tots
+            </span>
+            </div>
+          </div>
+          <div class="converter-container">
+            <div class="converter-wrapper tall">
+              <div class="converter">
+                    <div id="formContainer">
+                      <fieldset>
+                        <form action="/saveFile" method="POST" enctype="multipart/form-data">
+  
+                          <label for="fileSelect">Chose current file type</label>
+                
+                          <select name="fileLegacy" id="fileSelect" required>
+                            <option value="" disabled selected hidden>Choose file</option>
+                            <% Files.forEach(val=>{ %>
+                              <option  value="<%=val%>">
+                                <%=val%>
+                              </option>
+                              <% }) %>
+                          </select>
+                
+                          <br>
+                
+                          <label for="fileTarget">Select desired file type</label>
+                
+                          <select name="fileConversion" id="fileTarget" required>
+                            <option value="" id="defaultSelect" disabled selected="selected" hidden >Choose file</option>
+                            <% FilesTwo.forEach(val=>{ %>
+                              <option class="hide" id="<%=val%>" value="<%=val%>">
+                                <%=val%>
+                              </option>
+                              <% }) %>
+                
+                          </select>
+                
+                          <br>
+                
+                          <label for="fileUpload">Select the file for conversion:</label>
+                
+                          <input type="file" id="fileUpload" name="fileUpload" accept="image/png, image/jpg" required>
+                
+                          <br>
+                
+                          <input type="submit" value="Convert!">
+                
+                        </form>
+                      </fieldset>
+                    
+                    </div>
+                
+              </div> 
+            </div>
+          </div>
+          <div class="why-us">
+            <div class="row justify-content-center">
+              <div class="clo-12 col-md-6 col-lg-4 text-center">
+                <p class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                    <path d="M28,10v5h-5l2.279-2.279C23.752,11.609,21.925,11,20,11c-4.962,0-9,4.038-9,9h-1c0-5.514,4.486-10,10-10
+              c2.191,0,4.271,0.711,5.993,2.007L28,10z"></path>
+                    <path d="M20,2C10.075,2,2,10.075,2,20c0,9.925,8.075,18,18,18c9.925,0,18-8.075,18-18C38,10.075,29.925,2,20,2z
+               M20,37c-9.374,0-17-7.626-17-17S10.626,3,20,3s17,7.626,17,17S29.374,37,20,37z M29,20h1c0,5.514-4.486,10-10,10
+              c-2.193,0-4.272-0.711-5.993-2.007L12,30v-5h5l-2.279,2.279C16.248,28.391,18.075,29,20,29C24.963,29,29,24.963,29,20z"></path>
+                </svg>
+                </p>
+                <h3>Many file types supported</h3>
+                <p>
+                  From Russet Burbank to Beauregard variety of sweet potato and ; We've got you covered!
+                </p>
+              </div>  
+              <div class="clo-12 col-md-6 col-lg-4 text-center">
+                <p class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                    <path d="M13.35,29.4c-0.111,0-0.222-0.037-0.312-0.109c-0.154-0.123-0.222-0.326-0.172-0.518l1.825-6.968
+              l-4.535-4.284c-0.139-0.131-0.191-0.33-0.134-0.512c0.057-0.183,0.212-0.316,0.401-0.346l6.218-0.963l2.908-6.019
+              c0.167-0.345,0.733-0.345,0.9,0l2.908,6.019l6.218,0.963c0.189,0.029,0.345,0.163,0.401,0.346c0.057,0.182,0.005,0.381-0.134,0.512
+              l-4.535,4.284l1.825,6.968c0.051,0.191-0.017,0.395-0.171,0.518c-0.155,0.124-0.369,0.144-0.543,0.053L20,26.009l-6.419,3.335
+              C13.508,29.382,13.429,29.4,13.35,29.4z M20,24.945c0.079,0,0.158,0.019,0.23,0.057l5.65,2.936l-1.614-6.165
+              c-0.047-0.177,0.007-0.365,0.14-0.49l4.008-3.786l-5.468-0.847c-0.163-0.025-0.303-0.128-0.374-0.276L20,11.049l-2.572,5.323
+              c-0.071,0.148-0.211,0.251-0.374,0.276l-5.469,0.847l4.008,3.786c0.133,0.125,0.187,0.313,0.141,0.49l-1.615,6.165l5.65-2.936
+              C19.842,24.964,19.921,24.945,20,24.945z"></path>
+                    <path d="M20,38c-9.925,0-18-8.075-18-18c0-9.925,8.075-18,18-18c9.925,0,18,8.075,18,18C38,29.925,29.925,38,20,38z
+               M20,3C10.626,3,3,10.626,3,20s7.626,17,17,17s17-7.626,17-17S29.374,3,20,3z"></path>
+                </svg>
+                </p>
+                <h3>Convient & Easy</h3>
+                <p>
+                  Simply, select the file, choose the desired target output format, and hit the "Convert" button. <br>
+                  Let our file converter take care of the rest!
+                </p>
+              </div>  
+             
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
     </div>
 
   </main>
