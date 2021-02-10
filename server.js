@@ -10,7 +10,7 @@ const formidable = require('formidable');
 const base64 = require('file-base64');
 const { ConvertAPI } = require('convertapi');
 const convertapi = new ConvertAPI(process.env.SECRET, { conversionTimeout: 60 });
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 
@@ -23,7 +23,7 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 app.use(cors());
 client.connect();
-client.on('error',err=>console.error(err));
+client.on('error', err => console.error(err));
 app.use(express.static('./public'));
 
 app.use(express.urlencoded({ extended: true }));
@@ -46,40 +46,39 @@ function aboutUsHandler(request, response) {
 }
 
 function formHandler(request, response) {
-  const extensions = ['png','jpg','pdf','docx','xlsx','html','gif','jpeg','zip','doc','webp','txt'];
-  const conversionTypes = ['jpg','png','pdf','pdfa','tiff','watermark','webp','gif','doc','txt','jpeg','docx','html','jpg','mhtml','odt','pdf','pdfa','png','rtx','tiff','txt','webp','xps','zip','compress','decompress','decrypt','encrypt','extract','jpg','pdfa','png','pptx','repair','txt','zip','watermark'];
+  const extensions = ['png', 'jpg', 'pdf', 'docx', 'xlsx', 'html', 'gif', 'jpeg', 'zip', 'doc', 'webp', 'txt'];
+  const conversionTypes = ['jpg', 'png', 'pdf', 'pdfa', 'tiff', 'watermark', 'webp', 'gif', 'doc', 'txt', 'jpeg', 'docx', 'html', 'jpg', 'mhtml', 'odt', 'pdf', 'pdfa', 'png', 'rtx', 'tiff', 'txt', 'webp', 'xps', 'zip', 'compress', 'decompress', 'decrypt', 'encrypt', 'extract', 'jpg', 'pdfa', 'png', 'pptx', 'repair', 'txt', 'zip', 'watermark'];
   extensions.sort();
   conversionTypes.sort();
-  let uniqueTypes= new Set(conversionTypes);
-  response.status(200).render('pages/form',{Files:extensions,FilesTwo:uniqueTypes});
+  let uniqueTypes = new Set(conversionTypes);
+  response.status(200).render('pages/form', { Files: extensions, FilesTwo: uniqueTypes });
 }
 
 function saveHandler(request, response) {
   let form = new formidable.IncomingForm();
-  const SQL='INSERT INTO conversiondata (filetype,filesize) VALUES ($1,$2)';
+  const SQL = 'INSERT INTO conversiondata (filetype,filesize) VALUES ($1,$2)';
   form.parse(request, (err, fields, files) => {
     console.log(fields);
     console.log(files);
-    console.log(files.fileUpload.name+' -------------- ');
+    console.log(files.fileUpload.name + ' -------------- ');
 
     let holder = files.fileUpload.path;
-    let newPath= path.join(__dirname,'uploads')+'/'+files.fileUpload.name;
+    let newPath = path.join(__dirname, 'uploads') + '/' + files.fileUpload.name;
     let fileData = fs.readFileSync(holder);
     console.log(newPath);
-    fs.writeFile(newPath, fileData, function(err){
-      return err? console.log(err): console.log('Nice uploaded!');
-    });
-    
-    convertapi.convert(fields.fileConversion,{File:newPath})
-      .then(result=>{
-        console.log(result.response.Files[0]);
-        let infoHolder =result.response.Files[0];
-        const safeVal=[infoHolder.FileExt,infoHolder.FileSize];
-        client.query(SQL,safeVal);
-        response.status(200).render('pages/savefile',{fileData:infoHolder});
+    makeFile(newPath,fileData);
 
-      }).catch(err=>console.error(err));
- 
+    convertapi.convert(fields.fileConversion, { File: newPath })
+      .then(result => {
+        console.log(result.response.Files[0]);
+        let infoHolder = result.response.Files[0];
+        const safeVal = [infoHolder.FileExt, infoHolder.FileSize];
+        client.query(SQL, safeVal);
+        fs.emptyDirSync(path.join(__dirname,'uploads'));
+        response.status(200).render('pages/savefile', { fileData: infoHolder });
+
+      }).catch(err => console.error(err));
+
     // superagent.get(url)
     //   .set('Content-Type', `application/json`)
     //   .send(queryParams)
@@ -92,14 +91,19 @@ function saveHandler(request, response) {
     //     console.error(error);
 
     //   });
-    
+
   });
 
 }
+function makeFile(path,data){
+  fs.writeFile(path, data, function (err) {
+    return err ? console.log(err) : console.log('Nice uploaded!');
+  });
+}
 
-function FileInfo(object){
-  this.filetype= object.FileExt;
-  this.filesize= object.FileSize;
+function FileInfo(object) {
+  this.filetype = object.FileExt;
+  this.filesize = object.FileSize;
 }
 
 
