@@ -22,7 +22,8 @@ const app = express();
 const client = new pg.Client(process.env.DATABASE_URL);
 
 app.use(cors());
-
+client.connect();
+client.on('error',err=>console.error(err));
 app.use(express.static('./public'));
 
 app.use(express.urlencoded({ extended: true }));
@@ -55,7 +56,7 @@ function formHandler(request, response) {
 
 function saveHandler(request, response) {
   let form = new formidable.IncomingForm();
-
+  const SQL='INSERT INTO conversiondata (filetype,filesize) VALUES ($1,$2)';
   form.parse(request, (err, fields, files) => {
     console.log(fields);
     console.log(files);
@@ -65,9 +66,6 @@ function saveHandler(request, response) {
     let newPath= path.join(__dirname,'uploads')+'/'+files.fileUpload.name;
     let fileData = fs.readFileSync(holder);
     console.log(newPath);
-    // base64.encode(holder, (err, base64String) => {
-
-    // });
     fs.writeFile(newPath, fileData, function(err){
       return err? console.log(err): console.log('Nice uploaded!');
     });
@@ -75,7 +73,11 @@ function saveHandler(request, response) {
     convertapi.convert(fields.fileConversion,{File:newPath})
       .then(result=>{
         console.log(result.response.Files[0]);
-        // console.log(result.file);
+        let infoHolder =result.response.Files[0];
+        const safeVal=[infoHolder.FileExt,infoHolder.FileSize];
+        client.query(SQL,safeVal);
+        response.status(200).render('pages/savefile',{fileData:infoHolder});
+
       }).catch(err=>console.error(err));
  
     // superagent.get(url)
@@ -90,11 +92,15 @@ function saveHandler(request, response) {
     //     console.error(error);
 
     //   });
-    response.status(200).render('pages/savefile');
+    
   });
 
 }
 
+function FileInfo(object){
+  this.filetype= object.FileExt;
+  this.filesize= object.FileSize;
+}
 
 app.listen(PORT, () => {
   console.log(`hi, you are on port ${PORT}`);
