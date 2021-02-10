@@ -8,4 +8,5 @@
 #resultsChart {
   background-color: black;
   position: relative; top: 483px;
+  max-height: 500px;
 }
