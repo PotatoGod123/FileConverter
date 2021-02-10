@@ -66,9 +66,6 @@ function saveHandler(request, response) {
     let newPath= path.join(__dirname,'uploads')+'/'+files.fileUpload.name;
     let fileData = fs.readFileSync(holder);
     console.log(newPath);
-    // base64.encode(holder, (err, base64String) => {
-
-    // });
     fs.writeFile(newPath, fileData, function(err){
       return err? console.log(err): console.log('Nice uploaded!');
     });
