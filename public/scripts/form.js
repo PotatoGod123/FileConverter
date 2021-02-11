@@ -22,6 +22,8 @@ $selectCurrentType.on('change', function () {
   const jpgType=['pdf','pdfa','png','tiff','watermark','webp','zip'];
   const pdfType=['compress','decompress','decrypt','encrypt','extract','jpg','pdfa','png','pptx','repair','txt','zip','watermark'];
   const txtType=['jpg','pdf','png','tiff','webp','zip'];
+  const xlsxType=['jpg','pdf','pdfa','tiff','csv','webp','png'];
+  const zipType=['extract'];
   if(selectedOption==='png'){
     pngType.forEach(val=>{
       $(`#${val}`).removeClass('hide');
@@ -37,7 +39,7 @@ $selectCurrentType.on('change', function () {
       $(`#${val}`).removeClass('hide');
     });
   }
-  if(selectedOption==='gif'||selectedOption==='jpeg'){
+  if(selectedOption==='gif'||selectedOption==='jpeg'||selectedOption==='webp'){
     gifType.forEach(val=>{
       $(`#${val}`).removeClass('hide');
     });
@@ -59,6 +61,16 @@ $selectCurrentType.on('change', function () {
   }
   if(selectedOption==='txt'){
     txtType.forEach(val=>{
+      $(`#${val}`).removeClass('hide');
+    });
+  }
+  if(selectedOption==='xlsx'){
+    xlsxType.forEach(val=>{
+      $(`#${val}`).removeClass('hide');
+    });
+  }
+  if(selectedOption==='zip'){
+    zipType.forEach(val=>{
       $(`#${val}`).removeClass('hide');
     });
   }
