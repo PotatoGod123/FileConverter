@@ -10,41 +10,7 @@
   <div class="main-container full-height forms-page"> 
   <header class="header">
     <%- include('../layout/header.ejs') %>
-    <div class="topbar">
-      <div class="topbar-container">
-        <nav class="topbar-nav">
-          <ul class="topbar-links">
-            <li class="nav-item">
-              <a href="/" target="_blank" rel="noopener">Home
-              </a>
-            </li>
-            <li>
-              <a href="/form" target="_blank" rel="noopener">Resize Video
-              </a> 
-            </li>
-            <li>
-              <a href="/aboutus" target="_blank" rel="noopener">Resize Video
-              </a> 
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <div class="sticky-wrapper" style="min-height:70px;">
-      <div class="header-main sticky-header">
-        <div class="container">
-          <div class="header-wrapper">
-            <div class="logo">
-              <img src="https://www.onlyfoods.net/wp-content/uploads/2020/04/Russet-Potato.jpg" alt="Russet" width="100" height="70">
-              <a href=""></a>
-            </div>
-            <div class="mobile-tools">
-              <img src="https://cdn.pixabay.com/photo/2016/06/10/16/43/potatoes-1448420_960_720.jpg" alt="Russet" width="100" height="70">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     
   </header>
   <main>
@@ -74,7 +40,7 @@
                       <fieldset>
                         <form action="/saveFile" method="POST" enctype="multipart/form-data">
   
-                          <label for="fileSelect">Chose current file type</label>
+                          <label for="fileSelect">Choose current file type</label>
                 
                           <select name="fileLegacy" id="fileSelect" required>
                             <option value="" disabled selected hidden>Choose file</option>

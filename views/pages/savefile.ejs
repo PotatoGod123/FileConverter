@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%- include('../layout/head.ejs') %> 
-  <title>Save file</title>
-</head>
-<body>
-  <header>
-    <%- include('../layout/header.ejs') %>
-  </header>
-  <main>
-    
-    <h1>Hello Save File</h1>
-    
-  </main>
-  <footer>
-    <%- include('../layout/footer.ejs') %>
-  </footer>
+  <head>
+    <%- include('../layout/head.ejs') %> 
+    <title>Save file</title>
+  </head>
+  <body>
+    <header>
+      <%- include('../layout/header.ejs') %>
+    </header>
+    <main>
 
-</body>
+      <h1>Potato-god file converter has delivered!</h1>
+
+        <br>
+
+        The details of your newly converted file <%=fileData.FileName%> are:<br/> 
+        <ul>
+          <li> Your file has been converted to: <%=fileData.FileExt%> </li>
+          <li> Your file size is:  <%=fileData.FileSize%> bytes </li>
+          <li> Its unique file id:  <%=fileData.FileId%></li>
+          <li> <a href="<%= fileData.Url %>">Download Converted File</a> </li>
+        </ul>
+        <!-- add legacy file type? -->
+        <!-- <img src="<%= fileData.Url %>" alt=""> -->
+      <p>Enjoy!</p>
+    </main>
+    <footer>
+      <%- include('../layout/footer.ejs') %>
+    </footer>
+
+  </body>
 </html>
+
