@@ -51,3 +51,8 @@ body {
 .name {
  font-weight: bold;
 }
+
+.welcomeMessage {
+  text-align: center;
+  line-height: 100px;
+}
