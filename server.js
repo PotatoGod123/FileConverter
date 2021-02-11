@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 const client = new pg.Client(process.env.DATABASE_URL);
-
+pg.defaults.ssl = true;
 app.use(cors());
 client.connect();
 client.on('error', err => console.error(err));
