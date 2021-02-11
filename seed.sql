@@ -1,0 +1,1 @@
+INSERT INTO conversiondata (filetype,filesize) VALUES ('png',24234);

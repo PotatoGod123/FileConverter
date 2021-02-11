@@ -38,7 +38,7 @@ app.post('/savefile', saveHandler);
 
 //Handlers
 function homeHandler(request, response) {
-  let chartInfo='SELECT * FROM conversiondata;';
+  let chartInfo='SELECT * FROM conversiondata';
   client.query(chartInfo)
     .then(result=>{
       console.log(result);
