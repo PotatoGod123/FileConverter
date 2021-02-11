@@ -38,7 +38,12 @@ app.post('/savefile', saveHandler);
 
 //Handlers
 function homeHandler(request, response) {
-  response.status(200).render('pages/index');
+  let chartInfo='SELECT * FROM conversiondata;';
+  client.query(chartInfo)
+    .then(result=>{
+      console.log(result);
+      response.status(200).render('pages/index', {chartKey: result.rows});
+    }).catch(err => console.error(err));
 }
 
 function aboutUsHandler(request, response) {
@@ -47,7 +52,7 @@ function aboutUsHandler(request, response) {
 
 function formHandler(request, response) {
   const extensions = ['png', 'jpg', 'pdf', 'docx', 'xlsx', 'html', 'gif', 'jpeg', 'zip', 'doc', 'webp', 'txt'];
-  const conversionTypes = ['jpg', 'png', 'pdf', 'pdfa', 'tiff', 'watermark', 'webp', 'gif', 'doc', 'txt', 'jpeg', 'docx', 'html', 'jpg', 'mhtml', 'odt', 'pdf', 'pdfa', 'png', 'rtx', 'tiff', 'txt', 'webp', 'xps', 'zip', 'compress', 'decompress', 'decrypt', 'encrypt', 'extract', 'jpg', 'pdfa', 'png', 'pptx', 'repair', 'txt', 'zip', 'watermark'];
+  const conversionTypes = ['jpg', 'png', 'pdf', 'pdfa', 'tiff', 'watermark', 'webp', 'gif', 'doc', 'txt', 'jpeg', 'docx', 'html', 'jpg', 'mhtml', 'odt', 'pdf', 'pdfa', 'png', 'rtx', 'tiff', 'txt', 'webp', 'xps', 'zip', 'compress', 'decompress', 'decrypt', 'encrypt', 'extract', 'jpg', 'pdfa', 'png', 'pptx', 'repair', 'txt', 'zip', 'watermark', 'csv'];
   extensions.sort();
   conversionTypes.sort();
   let uniqueTypes = new Set(conversionTypes);
