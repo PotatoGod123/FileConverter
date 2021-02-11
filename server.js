@@ -39,11 +39,7 @@ app.post('/savefile', saveHandler);
 //Handlers
 function homeHandler(request, response) {
   let chartInfo='SELECT * FROM conversiondata';
-  client.query(chartInfo)
-    .then(result=>{
-      console.log(result);
-      response.status(200).render('pages/index', {chartKey: result.rows});
-    }).catch(err => console.error(err));
+  response.status(200).render('pages/index');
 }
 
 function aboutUsHandler(request, response) {
