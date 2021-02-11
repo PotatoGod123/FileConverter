@@ -5,9 +5,9 @@ let ctx =  $('#resultsChart');
 new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: ['png', 'jpg', 'pdf', 'docx', 'xlsx', 'html', 'gif', 'jpeg', 'zip', 'doc', 'webp', 'txt'],
     datasets: [{
-      label: '# of Votes',
+      label: 'Conversions',
       data: [12, 19, 3, 5, 2, 3],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
