@@ -20,6 +20,8 @@
           <li> Your file size is:  <%=fileData.FileSize%> bytes </li>
           <li> Its unique file id:  <%=fileData.FileId%></li>
           <li> <a href="<%= fileData.Url %>">Download Converted File</a> </li>
+          <li>https://qrtag.net/api/qr(_transparent)(_[size]).[png|svg](?url="<%= fileData.Url %>")</li>
+          <li><img src="https://qrtag.net/api/qr_4.png?url=https://www.qrtag.net" alt="qrtag"></li>
         </ul>
         <!-- add legacy file type? -->
         <!-- <img src="<%= fileData.Url %>" alt=""> -->
