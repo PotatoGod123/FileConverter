@@ -8,14 +8,20 @@ new Chart(ctx, {
     labels: ['png', 'jpg', 'pdf', 'docx', 'xlsx', 'html', 'gif', 'jpeg', 'zip', 'doc', 'webp', 'txt'],
     datasets: [{
       label: 'Conversions',
-      data: [12, 19, 3, 5, 2, 3],
+      data: [12, 19, 3, 5, 2, 3,10,4,2,3,0,1],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(35, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 06, 86, 0.2)',
+        'rgba(75, 19, 192, 0.2)',
+        'rgba(153, 122, 255, 0.2)',
+        'rgba(232, 159, 64, 0.2)'
       ],
       borderColor: [
         'rgba(255, 99, 132, 1)',
